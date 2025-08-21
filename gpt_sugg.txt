@@ -1,0 +1,58 @@
+Run it in terminal with curl
+
+bash command
+curl -X GET https://localhost:8080
+
+
+
+If your server uses HTTP (Spring Boot default unless you enable SSL): bash command
+curl -X GET http://localhost:8080
+
+
+
+1️⃣ The problem
+
+curl -x GET http://localhost:8080/api/v1/software-engineer
+The -x flag in curl does not mean “HTTP method” — it actually means proxy server.
+So curl thought you were trying to use a proxy called GET and failed.
+
+2️⃣ The fix
+For a GET request, you can either:
+
+Default GET (simplest):
+
+curl http://localhost:8080/api/v1/software-engineer
+Explicit GET:
+
+
+curl -X GET http://localhost:8080/api/v1/software-engineer
+Here -X (capital X) specifies the HTTP method.
+
+3️⃣ Extra tip
+Since your controller returns JSON, you can pretty-print it:
+
+curl -s http://localhost:8080/api/v1/software-engineer | jq
+(jq is a JSON formatter, handy for debugging APIs.)
+
+
+
+For Windows :
+    open git bash
+    go to the location where sprin boot is present ( cd "/c/Users/Anurag Singh/Documents/laptop/Spring_boot")
+    then to see the DB
+    curl -s http://localhost:8080/api/v1/soft_eng
+
+
+Post method to insert something in db when api is running
+    POST API URL
+    POST http://localhost:8080/api/v1/soft_eng
+    Content-Type: application/json
+
+    and then a json object
+    {
+        "name" : "Flins",
+        "position" : "HR"
+    }
+
+
+
